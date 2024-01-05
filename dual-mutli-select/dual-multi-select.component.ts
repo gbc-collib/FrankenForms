@@ -1,3 +1,13 @@
+/*
+Created by Alex Klibisz, aklibisz@utk.edu
+February 2015
+http://alexklibisz.github.io/angular-dual-multiselect-directive/
+Modified to include a selected item input by Jason Ryan
+April 2019
+Update to angular2 by Collin Stasiak
+*/
+
+
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
@@ -15,8 +25,7 @@ interface IItem {
 @Component({
     selector: 'dual-multi-select',
     templateUrl: './dual-multiselect.component.html',
-    styleUrl: './dual-multiselect.component.scss'
-
+    styleUrl: './dual-multiselect.component.scss',
 })
 export class DualMultiSelectComponent implements OnChanges, ControlValueAccessor {
     @Input() options: any; // Define the input for options data
