@@ -1,0 +1,51 @@
+<div class="dualmultiselect">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>{{options.title}} <small>&nbsp;{{options.helpMessage}}</small></h4>
+            <!-- <input class="form-control" placeholder="{{options.filterPlaceHolder}}" [(ngModel)]="searchTerm"> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <label>{{options.labelAll}}</label>
+            <button type="button" class="btn btn-default btn-xs"
+                (click)="transfer(options.items, options.selectedItems, -1)">
+                Select All
+            </button>
+            <div class="pool">
+                <ul>
+                    <!-- May need to re-add the filter by searchterm option,
+                personally I've never seen client with enough to justify it -->
+                    <li *ngFor="let item of items trackBy: trackBy ">
+                        <a (click)=" transfer(items, selectedItems, items.indexOf(item))">
+                            {{item.name}} &nbsp;&rArr;
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label>{{options.labelSelected}}</label>
+            <button type="button" class="btn btn-default btn-xs" (click)="transfer(selectedItems, items, -1)">
+                Deselect All
+            </button>
+            <div class="pool">
+                <ul>
+                    <li *ngFor="let item of selectedItems trackBy:trackBy">
+                        <a (click)="transfer(selectedItems, items, selectedItems.indexOf(item))">
+                            &lArr;&nbsp;{{item.name}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row text-center">
+                <input class="form-control" type="{{options.addSelectedItemInput.type}}" [(ngModel)]="addItem"
+                    *ngIf="options.addSelectedItemInput.enable" (keydown.enter)="addToSelected(addItem, $event)"
+                    placeholder="{{options.addSelectedItemInput.placeholder}}" />
+                <span class="span-icon" (click)="addToSelected(addItem)"><i title="Add"
+                        class="icon-add-circled"></i></span>
+            </div>
+
+        </div>
+    </div>
+</div>
